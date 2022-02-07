@@ -12,9 +12,9 @@ services:
       - "3000:3000"
     environment:
       - HISTFILE=/usr/src/app/log/.bash_history 
-    depends_on:
-      - db
-      - redis
+    # depends_on:
+    #   - db
+    #   - redis
   database:
     image: postgres
     env_file: 
