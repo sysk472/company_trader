@@ -1,0 +1,27 @@
+services:
+  web:
+    build: .
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - .:/usr/src/app
+      - bundle:/usr/local/bundle
+    env_file: 
+      - .env/development/database
+      - .env/development/api
+    ports:
+      - "3000:3000"
+    environment:
+      - HISTFILE=/usr/src/app/log/.bash_history 
+    depends_on:
+      - db
+      - redis
+  database:
+    image: postgres
+    env_file: 
+      - .env/development/database
+    volumes: 
+      - db_data:/var/lib/postgresql/database
+
+volumes:
+  db_data:
+  bundle:
