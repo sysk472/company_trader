@@ -13,8 +13,7 @@ services:
     environment:
       - HISTFILE=/usr/src/app/log/.bash_history 
     depends_on:
-      - db
-      - redis
+      - db_data
   database:
     image: postgres
     env_file: 
